@@ -1,6 +1,6 @@
-compile: 
-	make 
-	make clean
+compile:
+make
+make clean
 
 my thought
-	dfs by array
+dfs by array

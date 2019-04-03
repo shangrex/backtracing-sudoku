@@ -22,7 +22,7 @@ int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
             }
         }
         return result;
-        
+
     }
 
 
