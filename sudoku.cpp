@@ -10,6 +10,6 @@ int sudoku::printout(int v[9][9]) {
         }
         cout << '\n';
     }
-    cout << '\n';
+    //cout << '\n';
     return 0;
 }
