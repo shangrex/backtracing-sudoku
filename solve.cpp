@@ -25,9 +25,6 @@ int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
 
     }
 
-
-
-
     //solve
     if(v[y][x] != 0) {
         result = backtrack(v, c+1, result, (x<8)?tmp1:0,(x<8)?y:tmp2, ans);
@@ -52,6 +49,7 @@ int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
             if(!row[k] && !col[k] && !matrix[k]) {
                 v[y][x] = k;
                 result = backtrack(v, c+1, result, (x<8)?tmp1:0,(x<8)?y:tmp2, ans);
+                if(result == 2)return 2;
                 v[y][x] = 0;
             }
         }
