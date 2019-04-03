@@ -25,6 +25,7 @@ int main() {
     while(1) {
         if(n == 0)break;
         if(n == 1) {
+            //swap
             cin >> x >> y;
             loopi{
                 loopj{
@@ -70,6 +71,11 @@ int main() {
                 loopi{
                     loopj{
                         u[j][8-i] = v[i][j];
+                    }
+                }
+                loopi{
+                    loopj{
+                        v[i][j] = u[i][j];
                     }
                 }
             }
