@@ -10,7 +10,7 @@ int sudoku::printout(int v[9][9]) {
             printf("%d",v[i][j]);
             if(j!=8)printf(" ");
         }
-        cout << '\n';
+        printf("\n");
     }
     //cout << '\n';
     return 0;
