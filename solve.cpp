@@ -5,6 +5,7 @@
 #include<cstring>
 #include<vector>
 #include"sudoku.h"
+#include<stdio.h>
 #define loopi for(int i=0;i<9;i++)
 #define loopj for(int j=0; j<9;j++)
 //#include<bits/stdc++.h>
@@ -66,7 +67,8 @@ int main() {
 
     for(int i = 0; i < 9; i++) {
         for(int j = 0; j < 9; j++) {
-            cin >> v[i][j];
+            //cin >> v[i][j];
+            scnaf("%d", &v[i][j]);
         }
     }
     int c = 0;
