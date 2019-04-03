@@ -10,7 +10,6 @@
 //#include<bits/stdc++.h>
 //#include "sudoku.h"
 using namespace std;
-int printout(int v[9][9]);
 int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
     int tmp1 =x+1, tmp2 = y+1;
     if(result >= 2)return 2;
@@ -60,8 +59,8 @@ int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
 }
 
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+    //ios::sync_with_stdio(0);
+    //cin.tie(0);
     int v[9][9], ans[9][9];
     sudoku solve;
 
@@ -72,7 +71,7 @@ int main() {
     }
     int c = 0;
     int result = 0;
-    int x= 0, y = 0;
+    int x = 0, y = 0;
     result = backtrack(v, c, result, x, y, ans);
     if(result == 1) {
         cout << 1 << '\n';
