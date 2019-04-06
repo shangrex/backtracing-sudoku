@@ -29,10 +29,8 @@ int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
         result = backtrack(v, c+1, result, (x<8)?tmp1:0,(x<8)?y:tmp2, ans);
     } else {
         //elemination
-        int row[10], col[10], matrix[10];
-        memset(row,0,sizeof(row));
-        memset(col,0,sizeof(col));
-        memset(matrix,0,sizeof(matrix));
+        int row[10] = {0}, col[10] = {0}, matrix[10] = {0};
+       
         loopi{
             row[v[y][i]]++;
             col[v[i][x]]++;
@@ -63,12 +61,17 @@ int main() {
     //cin.tie(0);
     int v[9][9], ans[9][9];
     sudoku solve;
-
+    int count = 0;
     loopi {
         loopj {
             cin >> v[i][j];
+            if(v[j][i] != 0)count++;
             //scanf("%d", &v[i][j]);
         }
+    }
+    if(count < 17){
+        cout << 0 << '\n';
+        return 0;
     }
     int c = 0;
     int result = 0;
