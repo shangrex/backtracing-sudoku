@@ -12,6 +12,7 @@
 //#include "sudoku.h"
 using namespace std;
 int v[9][9], ans[9][9];
+int row[9][10] = {0}, col[9][10] = {0}, matrix[9][10] = {0};
 
 int backtrack(int c, int result,int x, int y) {
 
@@ -27,24 +28,20 @@ int backtrack(int c, int result,int x, int y) {
         result = backtrack(c+1, result, (x<8)?x+1:0,(x<8)?y:y+1);
     } else {
         //elemination
-        int row[10] = {0}, col[10] = {0}, matrix[10] = {0};
 
-        loopi{
-            row[v[y][i]]++;
-            col[v[i][x]]++;
-        }
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                matrix[v[y/3*3+i][x/3*3+j]]++;
-            }
-        }
 
 
         for(int k = 1; k < 10; k++) {
-            if(!row[k] && !col[k] && !matrix[k]) {
+            if(!row[y][k] && !col[x][k] && !matrix[(y/3)*3+(x/3)][k]) {
                 v[y][x] = k;
+                row[y][k] = 1;
+                col[x][k] = 1;
+                matrix[(y/3)*3+(x/3)][k] = 1;
                 result = backtrack(c+1, result, (x<8)?x+1:0,(x<8)?y:y+1);
                 if(result == 2)return 2;
+                row[y][k] = 0;
+                col[x][k] = 0;
+                matrix[(y/3)*3+(x/3)][k] = 0;
                 v[y][x] = 0;
             }
         }
@@ -65,6 +62,16 @@ int main() {
             cin >> v[i][j];
             //if(v[i][j] != 0)count++;
             //scanf("%d", &v[i][j]);
+        }
+    }
+    for(int i = 0; i < 9; i++) {
+        for(int j = 0; j < 9; j++) {
+            if(v[i][j] != 0) {
+                row[i][v[i][j]] = 1;
+                col[j][v[i][j]] = 1;
+                matrix[(i/3)*3+(j/3)][v[i][j]] = 1;
+
+            }
         }
     }
 
