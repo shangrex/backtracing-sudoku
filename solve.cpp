@@ -30,7 +30,7 @@ int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
     } else {
         //elemination
         int row[10] = {0}, col[10] = {0}, matrix[10] = {0};
-       
+
         loopi{
             row[v[y][i]]++;
             col[v[i][x]]++;
@@ -69,7 +69,7 @@ int main() {
             //scanf("%d", &v[i][j]);
         }
     }
-    if(count < 17){
+    if(count < 17) {
         cout << 0 << '\n';
         return 0;
     }
