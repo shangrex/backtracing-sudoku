@@ -65,12 +65,12 @@ int main() {
     loopi {
         loopj {
             cin >> v[i][j];
-            if(v[j][i] != 0)count++;
+            if(v[i][j] != 0)count++;
             //scanf("%d", &v[i][j]);
         }
     }
     if(count < 17) {
-        cout << 0 << '\n';
+        cout << 2 << '\n';
         return 0;
     }
     int c = 0;
