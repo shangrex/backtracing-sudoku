@@ -19,7 +19,12 @@ int backtrack(int c, int result,int x, int y) {
     if(result == 2)return 2;
     if(c == 81) {
         result++;
-        memcpy(ans, v,sizeof(int) * 81);
+        loopi {
+            loopj {
+                ans[i][j] = v[i][j];
+            }
+        }
+        //memcpy(ans, v,sizeof(int) * 81);
         return result;
     }
 
@@ -28,8 +33,6 @@ int backtrack(int c, int result,int x, int y) {
         result = backtrack(c+1, result, (x<8)?x+1:0,(x<8)?y:y+1);
     } else {
         //elemination
-
-
 
         for(int k = 1; k < 10; k++) {
             if(!row[y][k] && !col[x][k] && !matrix[(y/3)*3+(x/3)][k]) {
@@ -56,7 +59,6 @@ int main() {
     //cin.tie(0);
 
     sudoku solve;
-    int count = 0;
     loopi {
         loopj {
             cin >> v[i][j];
@@ -64,8 +66,8 @@ int main() {
             //scanf("%d", &v[i][j]);
         }
     }
-    for(int i = 0; i < 9; i++) {
-        for(int j = 0; j < 9; j++) {
+    loopi {
+        loopj {
             if(v[i][j] != 0) {
                 row[i][v[i][j]] = 1;
                 col[j][v[i][j]] = 1;
