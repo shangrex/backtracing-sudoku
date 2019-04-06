@@ -11,48 +11,46 @@
 //#include<bits/stdc++.h>
 //#include "sudoku.h"
 using namespace std;
-int v[9][9], ans[9][9];
-int backtrack(int c, int result,int x, int y) {
-
-    if(result == 2)return 2;
+int backtrack(int v[9][9], int c, int result,int x, int y,int ans[9][9]) {
+    int tmp1 =x+1, tmp2 = y+1;
+    if(result >= 2)return 2;
     if(c == 81) {
         result++;
-        /*loopi {
+        loopi {
             loopj {
                 ans[i][j] = v[i][j];
             }
-        }*/
-        memcpy(ans, v,sizeof(int) * 81);
+        }
         return result;
     }
-    //int tmp1 =x+1, tmp2 = y+1;
+
     //solve
     if(v[y][x] != 0) {
-        result = backtrack(c+1, result, (x<8)?x+1:0,(x<8)?y:y+1);
+        result = backtrack(v, c+1, result, (x<8)?tmp1:0,(x<8)?y:tmp2, ans);
     } else {
         //elemination
-        bool row[10] = {0}, col[10] = {0}, matrix[10] = {0};
-
+        int row[10], col[10], matrix[10];
+        memset(row,0,sizeof(row));
+        memset(col,0,sizeof(col));
+        memset(matrix,0,sizeof(matrix));
         loopi{
-            row[v[y][i]] = true;
-            col[v[i][x]] = true;
+            row[v[y][i]]++;
+            col[v[i][x]]++;
         }
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                matrix[v[y/3*3+i][x/3*3+j]] = true;
+                matrix[v[y/3*3+i][x/3*3+j]]++;
             }
         }
 
 
         for(int k = 1; k < 10; k++) {
             if(!row[k] && !col[k] && !matrix[k]) {
-
                 v[y][x] = k;
-                result = backtrack(c+1, result, (x<8)?x+1:0,(x<8)?y:y+1);
+                result = backtrack(v, c+1, result, (x<8)?tmp1:0,(x<8)?y:tmp2, ans);
                 if(result == 2)return 2;
                 v[y][x] = 0;
             }
-
         }
     }
 
@@ -63,23 +61,19 @@ int backtrack(int c, int result,int x, int y) {
 int main() {
     //ios::sync_with_stdio(0);
     //cin.tie(0);
-
+    int v[9][9], ans[9][9];
     sudoku solve;
-    int count = 0;
+
     loopi {
         loopj {
             cin >> v[i][j];
-            if(v[i][j] != 0)count++;
+            //scanf("%d", &v[i][j]);
         }
-    }
-    if(count < 17) {
-        cout << 0 << '\n' ;
-        return 0;
     }
     int c = 0;
     int result = 0;
     int x = 0, y = 0;
-    result = backtrack(c, result, x, y);
+    result = backtrack(v, c, result, x, y, ans);
     if(result == 1) {
         cout << 1 << '\n';
         solve.printout(ans);
