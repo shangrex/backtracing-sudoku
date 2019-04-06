@@ -27,15 +27,15 @@ int backtrack(int c, int result,int x, int y) {
         result = backtrack(c+1, result, (x<8)?x+1:0,(x<8)?y:y+1);
     } else {
         //elemination
-        bool row[10] = {0}, col[10] = {0}, matrix[10] = {0};
+        int row[10] = {0}, col[10] = {0}, matrix[10] = {0};
 
         loopi{
-            row[v[y][i]] = true;
-            col[v[i][x]] = true;
+            row[v[y][i]]++;
+            col[v[i][x]]++;
         }
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                matrix[v[y/3*3+i][x/3*3+j]] = true;
+                matrix[v[y/3*3+i][x/3*3+j]]++;
             }
         }
 
@@ -63,13 +63,9 @@ int main() {
     loopi {
         loopj {
             cin >> v[i][j];
-            if(v[i][j] != 0)count++;
+            //if(v[i][j] != 0)count++;
             //scanf("%d", &v[i][j]);
         }
-    }
-    if(count < 17){
-        cout << 0 << '\n';
-        return 0;
     }
 
     int c = 0;
