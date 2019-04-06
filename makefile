@@ -1,22 +1,15 @@
-SOURCE=sudoku.h sudoku.cpp generate.cpp transform.cpp solve.cpp
-OBJECT=sudoku.o sudoku.h
-CXXFLAGS=-g -Wall -std=c++0x -Ofast
-CXX=g++
-EXECUTABLE=generate transform solve
-
-all:$(SOURCE) $(EXECUTABLE)
-
-solve:solve.o $(OBJECT)
-	$(CXX) -o solve $(CXXFLAGS) solve.o sudoku.o
-
-generate:generate.o $(OBJECT)
-	$(CXX) -o generate $(CXXFLAGS) generate.o sudoku.o
-
-transform:transform.o $(OBJECT)
-	$(CXX) -o transform $(CXXFLAGS) transform.o sudoku.o
-
-%.o:%.cpp
-	$(CXX) -c $< $(CXXFLAGS)
-
+all: solve transform generate
+solve: solve.o sudoku.o
+	g++ -o solve -g -Wall -std=c++0x -Ofast solve.o sudoku.o
+solve.o: solve.cpp sudoku.cpp
+	g++ -c -g -Wall -std=c++0x -Ofast solve.cpp sudoku.cpp 
+generate: generate.o sudoku.o
+	g++ generate.o sudoku.o -o generate
+generate.o: generate.cpp sudoku.cpp
+	g++ -c generate.cpp sudoku.cpp
+transform: transform.o sudoku.o
+	g++ transform.o sudoku.o -o transform
+transform.o: transform.cpp sudoku.cpp
+	g++ -c transform.cpp sudoku.cpp
 clean:
-	rm *.o $(EXECUTABLE)
+	rm -f *.o
