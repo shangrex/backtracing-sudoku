@@ -1,6 +1,12 @@
+# Sudoku solver
 compile:
+```
 make
-make clean
+```
 
-my thought
-dfs by array
+Clean:
+```
+make clean
+```
+Idea:
+DFS by array
